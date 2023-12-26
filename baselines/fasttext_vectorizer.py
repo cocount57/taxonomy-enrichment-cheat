@@ -21,14 +21,14 @@ class FasttextVectorizer:
 
     def __get_ruwordnet_vectors(self, synsets):
         ids = []
-        vectors = np.zeros((len(synsets), self.model.vector_size))
+        vectors = np.zeros((len(synsets), self.model.get_dimension()))
         for i, (_id, texts) in enumerate(synsets.items()):
             ids.append(_id)
             vectors[i, :] = self.__get_avg_vector(texts)
         return ids, vectors
 
     def __get_avg_vector(self, texts):
-        sum_vector = np.zeros(self.model.vector_size)
+        sum_vector = np.zeros(self.model.get_dimension())
         for text in texts:
             words = [i.strip(punctuation) for i in text.split()]
             sum_vector += np.sum(self.__get_data_vectors(words), axis=0)/len(words)
@@ -43,7 +43,7 @@ class FasttextVectorizer:
         self.save_as_w2v(data, data_vectors, output_path)
 
     def __get_data_vectors(self, data):
-        vectors = np.zeros((len(data), self.model.vector_size))
+        vectors = np.zeros((len(data), self.model.get_dimension()))
         for i, word in enumerate(data):  # TODO: how to do it more effective or one-line
             vectors[i, :] = self.model[word]
         return vectors
