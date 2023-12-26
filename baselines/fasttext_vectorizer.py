@@ -69,8 +69,8 @@ def process_data(input_file, output_file):
 
 
 if __name__ == '__main__':
-    ft_vec = FasttextVectorizer("models/cc.ru.300.bin")
-    ruwordnet = RuWordnet(db_path="../data/ruwordnet.db", ruwordnet_path=None)
+    ft_vec = FasttextVectorizer("../../cc.ru.300.bin")
+    ruwordnet = RuWordnet(db_path="ruwordnet/ruwordnet.db", ruwordnet_path=None)
     noun_synsets = defaultdict(list)
     verb_synsets = defaultdict(list)
     for sense_id, synset_id, text in ruwordnet.get_all_senses():
