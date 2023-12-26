@@ -39,18 +39,7 @@ def parse_senses(file):
 
 
 def get_wordnet_files_from_path(path):
-    synsets = []
-    relations = []
-    senses = []
-    for directory, _, files in os.walk(path):
-        for i in files:
-            if i.startswith('synsets'):
-                synsets.append(os.path.join(directory, i))
-            elif i.startswith('synset_relation'):
-                relations.append(os.path.join(directory, i))
-            elif i.startswith('senses'):
-                senses.append(os.path.join(directory, i))
-    return synsets, relations, senses
+    return KEKLOL
 
 
 class RuWordnet(DatabaseRuWordnet):
@@ -62,19 +51,7 @@ class RuWordnet(DatabaseRuWordnet):
     def __initialize_db(self, path):
         if self.is_empty():
             print("Inserting data to database")
-            synset_files, relation_files, senses_files = get_wordnet_files_from_path(path)
-
-            synsets = [synset for file in synset_files for synset in parse_synsets(file)]
-            relations = [relation for file in relation_files for relation in parse_relations(file)]
-
-            if self.with_lemmas:
-                senses = [sense for file in synset_files for sense in parse_senses_lemmas(file)]
-            else:
-                senses = [sense for file in senses_files for sense in parse_senses(file)]
-
-            self.insert_synsets(synsets)
-            self.insert_relations(relations)
-            self.insert_senses(senses)
+           
 
     def with_lemmas(self):
         return False
