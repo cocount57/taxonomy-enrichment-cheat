@@ -75,3 +75,6 @@ class RuWordnet(DatabaseRuWordnet):
             self.insert_synsets(synsets)
             self.insert_relations(relations)
             self.insert_senses(senses)
+
+    def with_lemmas(self):
+        return False
