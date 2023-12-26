@@ -10,14 +10,6 @@ class Model:
         self.w2v_ruwordnet = KeyedVectors.load_word2vec_format(params['ruwordnet_vectors_path'], binary=False)
         self.w2v_data = KeyedVectors.load_word2vec_format(params['data_vectors_path'], binary=False)
 
-    @abstractmethod
-    def predict_hypernyms(self, neologisms, topn=10):
-        pass
-
-    @abstractmethod
-    def __compute_hypernyms(self, neologisms, topn=10):
-        pass
-
 
 class BaselineModel(Model):
     def __init__(self, params):
