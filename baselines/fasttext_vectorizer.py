@@ -4,11 +4,13 @@ import numpy as np
 from gensim.models.fasttext import load_facebook_model
 from string import punctuation
 from ruwordnet.ruwordnet_reader import RuWordnet
-
+import fasttext.util
+import fasttext
 
 class FasttextVectorizer:
     def __init__(self, model_path):
-        self.model = load_facebook_model(model_path)
+        #self.model = load_facebook_model(model_path)
+        self.model = fasttext.load_model(model_path)
         print('Model loaded')
 
     # -------------------------------------------------------------
